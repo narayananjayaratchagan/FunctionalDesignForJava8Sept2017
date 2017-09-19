@@ -16,13 +16,13 @@ class OrderByGas implements Comparator<Automobile> {
 interface AutoCriterion {
   boolean test(Automobile a);
 }
-
-class GasCriterion implements AutoCriterion {
-  @Override
-  public boolean test(Automobile a) {
-    return a.getGasLevel() > 50;
-  }
-}
+//
+//class GasCriterion implements AutoCriterion {
+//  @Override
+//  public boolean test(Automobile a) {
+//    return a.getGasLevel() > 50;
+//  }
+//}
 public class Fleet {
   
   public static void showAll(List<Automobile> cars) {
@@ -73,6 +73,6 @@ public class Fleet {
 //    fleet.sort(new OrderByGas());
 //    showAll(fleet);
    
-  showAll(getCarsByCriterion(fleet, new GasCriterion()));
+  showAll(getCarsByCriterion(fleet, Automobile.getGasCriterion()));
   }
 }

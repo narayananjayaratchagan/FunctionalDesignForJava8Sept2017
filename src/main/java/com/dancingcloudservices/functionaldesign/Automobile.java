@@ -33,10 +33,16 @@ public class Automobile {
     return "Automobile{" + "color=" + color + ", gasLevel=" + gasLevel + ", passengers=" + passengers + '}';
   }
 
-  static class GasCriterion implements AutoCriterion {
+  private static final AutoCriterion gasCriterion = new GasCriterion();
+  // Make this a factory / singleton
+  public static AutoCriterion getGasCriterion() {
+    return gasCriterion;
+  }
+  
+  private static class GasCriterion implements AutoCriterion {
     @Override
     public boolean test(Automobile a) {
-      return a.getGasLevel() > 50;
+      return a.gasLevel > 50;
     }
   }
 }
