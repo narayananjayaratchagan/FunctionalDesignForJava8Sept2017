@@ -16,6 +16,15 @@ class OrderByGas implements Comparator<Automobile> {
 interface AutoCriterion {
   boolean test(Automobile a);
 }
+
+interface BalloonCriterion {
+  boolean test(Balloon s);
+}
+class Balloon {
+  public int getGasLevel() {
+    return 100;
+  }
+}
 //
 //class GasCriterion implements AutoCriterion {
 //  @Override
@@ -75,5 +84,12 @@ public class Fleet {
    
   showAll(getCarsByCriterion(fleet, Automobile.getGasCriterion()));
   showAll(getCarsByCriterion(fleet, (Automobile a) -> { return a.getPassengers().size() > 3;}));
+  
+  Automobile x = new Automobile(Color.RED, 98, "Alan");
+//   AutoCriterion ac = (a -> a.getGasLevel() > 50);
+//   ac.test(x);
+   ((AutoCriterion)(a -> a.getGasLevel() > 50)).test(x);
+   Balloon b = new Balloon();
+   ((BalloonCriterion)(a -> a.getGasLevel() > 50)).test(b);
   }
 }

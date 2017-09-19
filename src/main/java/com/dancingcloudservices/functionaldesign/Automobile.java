@@ -67,8 +67,11 @@ public class Automobile {
 
   // Make this a factory / singleton
   public static AutoCriterion getGasCriterion() {
-    return gasCriterion;
+    return a -> a.gasLevel > 50;
   }
+//  public static AutoCriterion getGasCriterion() {
+//    return gasCriterion;
+//  }
   
 //
 //  private static final AutoCriterion gasCriterion = new GasCriterion();
