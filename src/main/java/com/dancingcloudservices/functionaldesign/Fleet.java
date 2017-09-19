@@ -13,8 +13,10 @@ class OrderByGas implements Comparator<Automobile> {
   }
 }
 
+@FunctionalInterface
 interface AutoCriterion {
   boolean test(Automobile a);
+//  void doStuff();
 }
 
 interface BalloonCriterion {
@@ -33,6 +35,9 @@ class Balloon {
 //  }
 //}
 public class Fleet {
+  public static AutoCriterion not(AutoCriterion crit) {
+    return a -> !crit.test(a);
+  }
   
   public static void showAll(List<Automobile> cars) {
     for (Automobile a : cars) {
@@ -81,15 +86,19 @@ public class Fleet {
 //    
 //    fleet.sort(new OrderByGas());
 //    showAll(fleet);
-   
-  showAll(getCarsByCriterion(fleet, Automobile.getGasCriterion()));
-  showAll(getCarsByCriterion(fleet, (Automobile a) -> { return a.getPassengers().size() > 3;}));
+
+  AutoCriterion moreThanHalfGas = Automobile.getGasCriterion(50);
+  showAll(getCarsByCriterion(fleet, moreThanHalfGas));
   
-  Automobile x = new Automobile(Color.RED, 98, "Alan");
+  AutoCriterion lessThanHalfGas = not(moreThanHalfGas);
+  showAll(getCarsByCriterion(fleet, lessThanHalfGas));
+//  showAll(getCarsByCriterion(fleet, (Automobile a) -> { return a.getPassengers().size() > 3;}));
+//  
+//  Automobile x = new Automobile(Color.RED, 98, "Alan");
 //   AutoCriterion ac = (a -> a.getGasLevel() > 50);
 //   ac.test(x);
-   ((AutoCriterion)(a -> a.getGasLevel() > 50)).test(x);
-   Balloon b = new Balloon();
-   ((BalloonCriterion)(a -> a.getGasLevel() > 50)).test(b);
+//   ((AutoCriterion)(a -> a.getGasLevel() > 50)).test(x);
+//   Balloon b = new Balloon();
+//   ((BalloonCriterion)(a -> a.getGasLevel() > 50)).test(b);
   }
 }
