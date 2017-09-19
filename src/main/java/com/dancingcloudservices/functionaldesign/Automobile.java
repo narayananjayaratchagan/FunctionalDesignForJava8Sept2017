@@ -33,16 +33,54 @@ public class Automobile {
     return "Automobile{" + "color=" + color + ", gasLevel=" + gasLevel + ", passengers=" + passengers + '}';
   }
 
-  private static final AutoCriterion gasCriterion = new GasCriterion();
+  // Lambda expression
+  // Expression lambda
+  private static final AutoCriterion gasCriterion = a -> a.gasLevel > 50 ;
+  
+  // Block lambda (full method body)
+//  private static final AutoCriterion gasCriterion = (a) -> { return a.gasLevel > 50;};
+
+//  private static final AutoCriterion gasCriterion = /*new AutoCriterion() {*/
+////    @Override
+//    /*public boolean test*/(/*Automobile*/ a) -> {
+//      return a.gasLevel > 70;
+//    }
+//  /*}*/;
+  
+//  // Anonymous class
+//  // Make this, rather than make Xxxx
+//  private static final AutoCriterion gasCriterion = new AutoCriterion() {
+//    @Override
+//    public boolean test(Automobile a) {
+//      return a.gasLevel > 70;
+//    }
+//  };
+//  // Anonymous class
+//  // Make this, rather than make Xxxx
+//  private static final AutoCriterion gasCriterion = new /*GasCriterion();
+//  private static class GasCriterion implements */ AutoCriterion() {
+//    @Override
+//    public boolean test(Automobile a) {
+//      return a.gasLevel > 50;
+//    }
+//  };
+
   // Make this a factory / singleton
   public static AutoCriterion getGasCriterion() {
     return gasCriterion;
   }
   
-  private static class GasCriterion implements AutoCriterion {
-    @Override
-    public boolean test(Automobile a) {
-      return a.gasLevel > 50;
-    }
-  }
+//
+//  private static final AutoCriterion gasCriterion = new GasCriterion();
+//  // Make this a factory / singleton
+//  public static AutoCriterion getGasCriterion() {
+//    return gasCriterion;
+//  }
+//  
+//  private static class GasCriterion implements AutoCriterion {
+//    @Override
+//    public boolean test(Automobile a) {
+//      return a.gasLevel > 50;
+//    }
+//  }
 }

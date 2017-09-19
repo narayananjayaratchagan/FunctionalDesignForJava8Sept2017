@@ -74,5 +74,6 @@ public class Fleet {
 //    showAll(fleet);
    
   showAll(getCarsByCriterion(fleet, Automobile.getGasCriterion()));
+  showAll(getCarsByCriterion(fleet, (Automobile a) -> { return a.getPassengers().size() > 3;}));
   }
 }
