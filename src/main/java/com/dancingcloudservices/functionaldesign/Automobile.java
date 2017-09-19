@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Automobile {
+
   private Color color;
   private int gasLevel;
   private List<String> passengers;
@@ -30,5 +31,12 @@ public class Automobile {
   @Override
   public String toString() {
     return "Automobile{" + "color=" + color + ", gasLevel=" + gasLevel + ", passengers=" + passengers + '}';
+  }
+
+  static class GasCriterion implements AutoCriterion {
+    @Override
+    public boolean test(Automobile a) {
+      return a.getGasLevel() > 50;
+    }
   }
 }
