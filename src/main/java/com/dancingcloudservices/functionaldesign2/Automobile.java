@@ -33,7 +33,10 @@ public class Automobile {
     return "Automobile{" + "color=" + color + ", gasLevel=" + gasLevel + ", passengers=" + passengers + '}';
   }
 
-  public static AutoCriterion getGasCriterion(final int level) {
+  public static Criterion<Automobile> getGasCriterion(final int level) {
     return a -> a.gasLevel > level;
   }
+//  public static AutoCriterion getGasCriterion(final int level) {
+//    return a -> a.gasLevel > level;
+//  }
 }
